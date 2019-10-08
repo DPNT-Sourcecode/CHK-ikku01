@@ -1,3 +1,4 @@
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 
@@ -59,12 +60,17 @@ def check_offers(items):
     """
 
     offers = 0
+
+    while items[0] >= 5:
+        offers += 200
+        items[0] -= 5
+
     while items[0] >= 3:
         offers += 130
         items[0] -= 3
 
     e_items = int(items[4])
-    while e_items > 2 and items[1] > 1:
+    while e_items >= 2 and items[1] >= 1:
         items[1] -= 1
         e_items -= 2
 
@@ -76,6 +82,7 @@ def check_offers(items):
 
 
 if __name__ == "__main__":
-    checkout("AAABEEEBBBEBCCC")
+    checkout("AAABEEEBBBEBCCCAA")
+
 
 
