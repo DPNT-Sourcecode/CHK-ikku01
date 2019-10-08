@@ -5,7 +5,8 @@ prices = {
     "A": 50,
     "B": 30,
     "C": 20,
-    "D": 15
+    "D": 15,
+    "E": 40
 }
 
 
@@ -31,6 +32,8 @@ def checkout(skus):
             items[2] += 1
         elif sku == "D":
             items[3] += 1
+        elif sku == "E":
+            items[4] += 1
 
     items, offers = check_offers(items)
 
@@ -56,8 +59,11 @@ def check_offers(items):
         offers += 130
         items[0] -= 3
 
+    e_items = 
+
     while items[1] >= 2:
         offers += 45
         items[1] -= 2
 
     return items, offers
+
