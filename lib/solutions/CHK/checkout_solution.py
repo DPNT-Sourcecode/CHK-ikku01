@@ -14,7 +14,7 @@ prices = {
 
 def checkout(skus):
 
-    items = [0, 0, 0, 0, 0, 0]
+    items = [0] * 26
     item_key = ["A", "B", "C", "D", "E", "F"]
 
     skus = list(skus)  # Split skus into individual units
@@ -38,7 +38,7 @@ def checkout(skus):
             items[4] += 1
         elif sku == "F":
             items[5] += 1
-            
+
     items, offers = check_offers(items)
     # put each item through pricing scrutiny, then add on the pricing of the special offers
     total = sum([prices[item_key[i]] * items[i] for i in range(len(items))]) + offers
@@ -85,6 +85,7 @@ def check_offers(items):
         items[5] -= 3
 
     return items, offers
+
 
 
 
