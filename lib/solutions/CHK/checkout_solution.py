@@ -81,7 +81,7 @@ def check_offers(items):
     r_items = int(items[asc_up.index("R")])  # 3R get one Q free
     while r_items >= 3 and items[asc_up.index("Q")] >= 1:
         items[asc_up.index("Q")] -= 1
-        n_items -= 3
+        r_items -= 3
 
     while items[asc_up.index("A")] >= 5:  # 5A for 200
         offers += 200
@@ -135,5 +135,6 @@ def check_offers(items):
 
 
 if __name__ == "__main__":
-    checkout("AAAAAAAVV")
+    checkout("KKFFF")
+
 
