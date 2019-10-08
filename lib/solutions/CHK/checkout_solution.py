@@ -61,9 +61,3 @@ def check_offers(items):
         items[1] -= 2
 
     return items, offers
-
-
-
-
-
-
