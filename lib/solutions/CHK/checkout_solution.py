@@ -1,4 +1,4 @@
-
+import sys
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -51,3 +51,7 @@ def check_offers(items):
         items[1] -= 2
 
     return items, offers
+
+if __name__ == "__main__":
+    checkout("AAAABBCCCCD")
+
