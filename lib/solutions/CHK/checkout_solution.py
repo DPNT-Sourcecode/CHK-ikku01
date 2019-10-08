@@ -14,6 +14,7 @@ prices = {
 def checkout(skus):
 
     items = [0, 0, 0, 0]
+    item_key = ["A", "B", "C", "D"]
 
     skus = list(skus)
 
@@ -32,11 +33,12 @@ def checkout(skus):
             items[2] += 1
         elif item == "D":
             items[3] += 1
-
+    print(items)
     items, offers = check_offers(items)
 
-    total = sum([prices[item] for item in items]) + offers
+    total = sum([prices[item_key[i]] * items[i] for i in range(len(items))]) + offers
 
+    print(int(total))
     return int(total)
 
 
@@ -52,6 +54,8 @@ def check_offers(items):
 
     return items, offers
 
+
 if __name__ == "__main__":
     checkout("AAAABBCCCCD")
+
 
