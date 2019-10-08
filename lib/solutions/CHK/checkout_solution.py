@@ -79,7 +79,3 @@ def check_offers(items):
     return items, offers
 
 
-
-
-
-
