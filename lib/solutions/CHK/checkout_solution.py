@@ -19,8 +19,8 @@ def checkout(skus):
     for sku in skus:
 
         try:  # Checks each value to make sure it is a valid entry
-            item = prices[sku.upper()]
-        except KeyError():
+            item = prices[sku]
+        except:
             return -1
 
         if sku == "A":
@@ -61,6 +61,7 @@ def check_offers(items):
         items[1] -= 2
 
     return items, offers
+
 
 
 
