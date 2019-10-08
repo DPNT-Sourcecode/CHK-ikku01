@@ -1,3 +1,4 @@
+import string
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -26,18 +27,9 @@ def checkout(skus):
         except:
             return -1
 
-        if sku == "A":
-            items[0] += 1
-        elif sku == "B":
-            items[1] += 1
-        elif sku == "C":
-            items[2] += 1
-        elif sku == "D":
-            items[3] += 1
-        elif sku == "E":
-            items[4] += 1
-        elif sku == "F":
-            items[5] += 1
+        sku_pos = string.ascii_uppercase.index(sku)
+
+        items[sku_pos] += 1
 
     items, offers = check_offers(items)
     # put each item through pricing scrutiny, then add on the pricing of the special offers
@@ -85,6 +77,7 @@ def check_offers(items):
         items[5] -= 3
 
     return items, offers
+
 
 
 
