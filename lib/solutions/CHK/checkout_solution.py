@@ -35,12 +35,10 @@ def checkout(skus):
             items[3] += 1
         elif sku == "E":
             items[4] += 1
-    print(items)
+
     items, offers = check_offers(items)
-    print(items)
     # put each item through pricing scrutiny, then add on the pricing of the special offers
     total = sum([prices[item_key[i]] * items[i] for i in range(len(items))]) + offers
-    print(total)
     return int(total)
 
 
@@ -61,28 +59,26 @@ def check_offers(items):
 
     offers = 0
 
-    while items[0] >= 5:
+    while items[0] >= 5:  # 5A for 200
         offers += 200
         items[0] -= 5
 
-    while items[0] >= 3:
+    while items[0] >= 3:  # 3A for 130
         offers += 130
         items[0] -= 3
 
-    e_items = int(items[4])
+    e_items = int(items[4])  # 2E get one B free
     while e_items >= 2 and items[1] >= 1:
         items[1] -= 1
         e_items -= 2
 
-    while items[1] >= 2:
+    while items[1] >= 2:  # 2B for 45
         offers += 45
         items[1] -= 2
 
     return items, offers
 
 
-if __name__ == "__main__":
-    checkout("AAABEEEBBBEBCCCAA")
 
 
 
