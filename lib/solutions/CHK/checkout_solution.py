@@ -11,5 +11,10 @@ prices = {
 }
 
 def checkout(skus):
-    raise NotImplementedError()
+    total = 0
+
+    skus = list(skus)
+
+    return int(total)
+
 
