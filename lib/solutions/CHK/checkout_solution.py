@@ -12,14 +12,23 @@ prices = {
 
 def checkout(skus):
     total = 0
+    items = [[] * 4]
 
     skus = list(skus)
 
     for sku in skus:
+
+        try:
+            item = prices[sku]
+        except KeyError():
+            
+
         if sku.isalpha() is False:
             return -1
 
+
     return int(total)
+
 
 
 
