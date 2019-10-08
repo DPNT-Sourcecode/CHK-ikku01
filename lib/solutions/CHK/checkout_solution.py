@@ -12,7 +12,7 @@ prices = {
 
 
 def checkout(skus):
-    total = 0
+
     items = [0, 0, 0, 0]
 
     skus = list(skus)
@@ -28,7 +28,7 @@ def checkout(skus):
             items[0] += 1
         elif item == "B":
             items[1] += 1
-        elif item ==  "C":
+        elif item == "C":
             items[2] += 1
         elif item == "D":
             items[3] += 1
@@ -42,10 +42,12 @@ def checkout(skus):
 
 def check_offers(items):
 
-    
+    offers = 0
+    while items[0] > 3:
+        offers += 130
+        items[0] -= 3
+    while items[1] > 2:
+        offers += 45
+        items[1] -= 2
 
     return items, offers
-
-
-
-
