@@ -7,16 +7,17 @@ prices = {
     "B": 30,
     "C": 20,
     "D": 15,
-    "E": 40
+    "E": 40,
+    "F": 10
 }
 
 
 def checkout(skus):
 
-    items = [0, 0, 0, 0, 0]
-    item_key = ["A", "B", "C", "D", "E"]
+    items = [0, 0, 0, 0, 0, 0]
+    item_key = ["A", "B", "C", "D", "E", "F"]
 
-    skus = list(skus) # Split skus into individual units
+    skus = list(skus)  # Split skus into individual units
 
     for sku in skus:
 
@@ -35,6 +36,8 @@ def checkout(skus):
             items[3] += 1
         elif sku == "E":
             items[4] += 1
+        elif sku == "F":
+            items[5] += 1
 
     items, offers = check_offers(items)
     # put each item through pricing scrutiny, then add on the pricing of the special offers
@@ -47,14 +50,14 @@ def check_offers(items):
 
     Adds the offer pricing into a special category and removes the items from standard pricing scrutiny.
 
-    >>> check_offers([4, 2, 4, 1, 0])
+    >>> check_offers([4, 2, 4, 1, 0, 0])
     175
-    >>> check_offers([4, 2, 4, 1, 4])
+    >>> check_offers([4, 2, 4, 1, 4, 0])
     130
-    >>> check_offers([2, 0, 5, 6, 0])
+    >>> check_offers([2, 0, 5, 6, 0, 0])
     0
-    >>> check_offers([2, 3, 5, 6, 2])
-    45
+    >>> check_offers([2, 3, 5, 6, 2, 3])
+    65
     """
 
     offers = 0
@@ -76,5 +79,10 @@ def check_offers(items):
         offers += 45
         items[1] -= 2
 
+    while items[5] >= 3:  # 2F get one F free
+        offers += 20
+        items[5] -= 3
+
     return items, offers
+
 
