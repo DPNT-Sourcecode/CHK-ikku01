@@ -15,6 +15,11 @@ def checkout(skus):
 
     skus = list(skus)
 
+    for sku in skus:
+        if sku.isalpha() is False:
+            return -1
+
     return int(total)
+
 
 
