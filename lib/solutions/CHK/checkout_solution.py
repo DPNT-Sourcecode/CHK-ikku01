@@ -10,9 +10,10 @@ prices = {
     "D": 15
 }
 
+
 def checkout(skus):
     total = 0
-    items = [[] * 4]
+    items = [0, 0, 0, 0]
 
     skus = list(skus)
 
@@ -21,13 +22,29 @@ def checkout(skus):
         try:
             item = prices[sku]
         except KeyError():
-            
-
-        if sku.isalpha() is False:
             return -1
 
+        if item == "A":
+            items[0] += 1
+        elif item == "B":
+            items[1] += 1
+        elif item ==  "C":
+            items[2] += 1
+        elif item == "D":
+            items[3] += 1
+
+    items, offers = check_offers(items)
+
+    total = sum([prices[item] for item in items]) + offers
 
     return int(total)
+
+
+def check_offers(items):
+
+    
+
+    return items, offers
 
 
 
