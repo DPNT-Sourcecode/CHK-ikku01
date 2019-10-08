@@ -1,5 +1,3 @@
-import sys
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 
@@ -21,7 +19,7 @@ def checkout(skus):
     for sku in skus:
 
         try:  # Checks each value to make sure it is a valid entry
-            item = prices[sku]
+            item = prices[sku.upper()]
         except KeyError():
             return -1
 
@@ -63,6 +61,7 @@ def check_offers(items):
         items[1] -= 2
 
     return items, offers
+
 
 
 
