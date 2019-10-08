@@ -1,4 +1,4 @@
-import string
+from string import ascii_uppercase as asc_up
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -9,14 +9,34 @@ prices = {
     "C": 20,
     "D": 15,
     "E": 40,
-    "F": 10
+    "F": 10,
+    "G": 20,
+    "H": 10,
+    "I": 35,
+    "J": 60,
+    "K": 80,
+    "L": 90,
+    "M": 15,
+    "N": 40,
+    "O": 10,
+    "P": 50,
+    "Q": 30,
+    "R": 50,
+    "S": 30,
+    "T": 20,
+    "U": 40,
+    "V": 50,
+    "W": 20,
+    "X": 90,
+    "Y": 10,
+    "Z": 50
 }
 
 
 def checkout(skus):
 
     items = [0] * 26
-    item_key = ["A", "B", "C", "D", "E", "F"]
+    item_key = list(asc_up)
 
     skus = list(skus)  # Split skus into individual units
 
@@ -27,7 +47,7 @@ def checkout(skus):
         except:
             return -1
 
-        sku_pos = string.ascii_uppercase.index(sku)
+        sku_pos = asc_up.index(sku)
 
         items[sku_pos] += 1
 
@@ -35,6 +55,7 @@ def checkout(skus):
     # put each item through pricing scrutiny, then add on the pricing of the special offers
     total = sum([prices[item_key[i]] * items[i] for i in range(len(items))]) + offers
 
+    print(total)
     return int(total)
 
 
@@ -43,39 +64,76 @@ def check_offers(items):
 
     Adds the offer pricing into a special category and removes the items from standard pricing scrutiny.
 
-    >>> check_offers([4, 2, 4, 1, 0, 0])
-    175
-    >>> check_offers([4, 2, 4, 1, 4, 0])
-    130
-    >>> check_offers([2, 0, 5, 6, 0, 0])
-    0
-    >>> check_offers([2, 3, 5, 6, 2, 3])
-    65
     """
 
     offers = 0
 
-    while items[0] >= 5:  # 5A for 200
-        offers += 200
-        items[0] -= 5
-
-    while items[0] >= 3:  # 3A for 130
-        offers += 130
-        items[0] -= 3
-
-    e_items = int(items[4])  # 2E get one B free
-    while e_items >= 2 and items[1] >= 1:
-        items[1] -= 1
+    e_items = int(items[asc_up.index("E")])  # 2E get one B free
+    while e_items >= 2 and items[asc_up.index("B")] >= 1:
+        items[asc_up.index("B")] -= 1
         e_items -= 2
 
-    while items[1] >= 2:  # 2B for 45
-        offers += 45
-        items[1] -= 2
+    n_items = int(items[asc_up.index("N")])  # 3N get one M free
+    while n_items >= 3 and items[asc_up.index("M")] >= 1:
+        items[asc_up.index("M")] -= 1
+        n_items -= 3
 
-    while items[5] >= 3:  # 2F get one F free
+    r_items = int(items[asc_up.index("R")])  # 3R get one Q free
+    while r_items >= 3 and items[asc_up.index("Q")] >= 1:
+        items[asc_up.index("Q")] -= 1
+        n_items -= 3
+
+    while items[asc_up.index("A")] >= 5:  # 5A for 200
+        offers += 200
+        items[asc_up.index("A")] -= 5
+
+    while items[asc_up.index("A")] >= 3:  # 3A for 130
+        offers += 130
+        items[asc_up.index("A")] -= 3
+
+    while items[asc_up.index("B")] >= 2:  # 2B for 45
+        offers += 45
+        items[asc_up.index("B")] -= 2
+
+    while items[asc_up.index("F")] >= 3:  # 2F get one F free
         offers += 20
-        items[5] -= 3
+        items[asc_up.index("F")] -= 3
+
+    while items[asc_up.index("H")] >= 10:  # 10H for 80
+        offers += 80
+        items[asc_up.index("H")] -= 10
+
+    while items[asc_up.index("H")] >= 5:  # 5H for 45
+        offers += 45
+        items[asc_up.index("H")] -= 5
+
+    while items[asc_up.index("K")] >= 2:  # 2K for 150
+        offers += 150
+        items[asc_up.index("K")] -= 2
+
+    while items[asc_up.index("P")] >= 5:  # 5P for 200
+        offers += 200
+        items[asc_up.index("P")] -= 5
+
+    while items[asc_up.index("Q")] >= 3:  # 3Q for 80
+        offers += 80
+        items[asc_up.index("Q")] -= 3
+
+    while items[asc_up.index("U")] >= 4:  # 3U get one U free
+        offers += 120
+        items[asc_up.index("U")] -= 4
+
+    while items[asc_up.index("V")] >= 3:  # 3Q for 130
+        offers += 130
+        items[asc_up.index("V")] -= 3
+
+    while items[asc_up.index("V")] >= 2:  # 2Q for 90
+        offers += 90
+        items[asc_up.index("V")] -= 2
 
     return items, offers
 
+
+if __name__ == "__main__":
+    checkout("AAAAAAAVV")
 
