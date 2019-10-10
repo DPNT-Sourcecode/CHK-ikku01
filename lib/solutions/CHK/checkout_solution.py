@@ -69,6 +69,7 @@ def multibuy(items, items_on_offer):
     # pick interested items
     for i in range(len(items_on_offer)):
         j = asc_up.index(items_on_offer[i])
+        print(items[j])
         for k in range(items[j]):
             offer_items.append((items_on_offer[i], prices[items_on_offer[i]]))
 
@@ -92,7 +93,7 @@ def check_offers(items):
     offers = 0
 
     offer_set = ["S", "T", "X", "Y", "Z"]
-    mb_items, o = multibuy([items[asc_up.index[k]] for k in offer_set], offer_set)
+    mb_items, o = multibuy(items, offer_set)
     offers += o
 
     e_items = int(items[asc_up.index("E")])  # 2E get one B free
@@ -163,5 +164,6 @@ def check_offers(items):
 
 if __name__ == "__main__":
     checkout("QQSXYZZ")
+
 
 
