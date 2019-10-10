@@ -59,11 +59,25 @@ def checkout(skus):
     return int(total)
 
 
-def multibuy(items):
+def multibuy(items, items_on_offer):
     """Check if items in the particular order fulfil multibuy requirements to sub in an offer price
     for "buy any x items" offers.
     """
     offers = 0
+    offer_items = []
+
+    # pick interested items
+    for i in range(len(items_on_offer)):
+        j = asc_up.index(items_on_offer[i])
+        for k in range(items[j]):
+            offer_items.append((items_on_offer[i], prices[items_on_offer[i]]))
+
+    print(offer_items)
+
+
+    # sort items by price
+
+
 
     return items, offers
 
@@ -77,7 +91,9 @@ def check_offers(items):
 
     offers = 0
 
-    multibuy([items[asc_up.index[k]] for k in ["S", "T", "X", "Y", "Z"]])
+    offer_set = ["S", "T", "X", "Y", "Z"]
+    mb_items, o = multibuy([items[asc_up.index[k]] for k in offer_set], offer_set)
+    offers += o
 
     e_items = int(items[asc_up.index("E")])  # 2E get one B free
     while e_items >= 2 and items[asc_up.index("B")] >= 1:
@@ -146,5 +162,6 @@ def check_offers(items):
 
 
 if __name__ == "__main__":
-    checkout("KKFFFUUUU")
+    checkout("QQSXYZZ")
+
 
