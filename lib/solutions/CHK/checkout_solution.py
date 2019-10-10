@@ -1,5 +1,6 @@
 from string import ascii_uppercase as asc_up
 from operator import itemgetter
+from collections import Counter
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -70,24 +71,24 @@ def multibuy(items, items_on_offer):
     # pick interested items
     for i in range(len(items_on_offer)):
         j = asc_up.index(items_on_offer[i])
-        print(items[j])
         for k in range(items[j]):
             offer_items.append((items_on_offer[i], prices[items_on_offer[i]]))
-
-    print(offer_items)
 
     # sort items by price
 
     offer_items = sorted(offer_items, key=itemgetter(1), reverse=True)
 
-    print(offer_items)
-
     # remove 3 highest, add to offers
     while len(offer_items) >= 3:
         offers += 45
         del offer_items[:3]
-        print(offer_items)
 
+    # reassign values of relevant items
+
+    counts = Counter(item[0] for item in offer_items)
+    for item in items_on_offer:
+        index = asc_up.index(item)
+        items[index] = counts[item]  # where all items of a type are in the offer this gives 0, else 1 or 2
 
     return items, offers
 
@@ -171,5 +172,3 @@ def check_offers(items):
     return items, offers
 
 
-if __name__ == "__main__":
-    checkout("QQSTXSSXXXXYYYZZ")
