@@ -173,9 +173,3 @@ def check_offers(items):
 
 if __name__ == "__main__":
     checkout("QQSTXSSXXXXYYYZZ")
-
-
-
-
-
-
