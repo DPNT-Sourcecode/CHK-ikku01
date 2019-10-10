@@ -1,4 +1,5 @@
 from string import ascii_uppercase as asc_up
+from operator import itemgetter
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -75,10 +76,11 @@ def multibuy(items, items_on_offer):
 
     print(offer_items)
 
-
     # sort items by price
 
+    offer_items = sorted(offer_items, key=itemgetter(1), reverse=True)
 
+    print(offer_items)
 
     return items, offers
 
@@ -164,6 +166,7 @@ def check_offers(items):
 
 if __name__ == "__main__":
     checkout("QQSXYZZ")
+
 
 
 
