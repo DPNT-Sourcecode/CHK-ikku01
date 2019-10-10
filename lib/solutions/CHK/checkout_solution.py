@@ -82,6 +82,13 @@ def multibuy(items, items_on_offer):
 
     print(offer_items)
 
+    # remove 3 highest, add to offers
+    while len(offer_items) >= 3:
+        offers += 45
+        del offer_items[:3]
+        print(offer_items)
+
+
     return items, offers
 
 
@@ -95,7 +102,7 @@ def check_offers(items):
     offers = 0
 
     offer_set = ["S", "T", "X", "Y", "Z"]
-    mb_items, o = multibuy(items, offer_set)
+    items, o = multibuy(items, offer_set)
     offers += o
 
     e_items = int(items[asc_up.index("E")])  # 2E get one B free
@@ -137,8 +144,8 @@ def check_offers(items):
         offers += 45
         items[asc_up.index("H")] -= 5
 
-    while items[asc_up.index("K")] >= 2:  # 2K for 150
-        offers += 150
+    while items[asc_up.index("K")] >= 2:  # 2K for 120
+        offers += 120
         items[asc_up.index("K")] -= 2
 
     while items[asc_up.index("P")] >= 5:  # 5P for 200
@@ -153,11 +160,11 @@ def check_offers(items):
         offers += 120
         items[asc_up.index("U")] -= 4
 
-    while items[asc_up.index("V")] >= 3:  # 3Q for 130
+    while items[asc_up.index("V")] >= 3:  # 3V for 130
         offers += 130
         items[asc_up.index("V")] -= 3
 
-    while items[asc_up.index("V")] >= 2:  # 2Q for 90
+    while items[asc_up.index("V")] >= 2:  # 2V for 90
         offers += 90
         items[asc_up.index("V")] -= 2
 
@@ -165,7 +172,8 @@ def check_offers(items):
 
 
 if __name__ == "__main__":
-    checkout("QQSXYZZ")
+    checkout("QQSTXSSXXXXYYYZZ")
+
 
 
 
